@@ -14,6 +14,7 @@ Spring scheduler runs on startup and then every 10 mins to fetch latest data fro
 /workers
 
 It removes and then bulk inserts fetched data to 2 MongoDB collections: workers, jobs
+
 Our Job matching algorithm always runs on these MongoDB collections.
 Job matching preference is based on these critera:
 1. Within range of Geo location selected by worker
