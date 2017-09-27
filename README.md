@@ -24,8 +24,12 @@ Job matching preference is based on these critera:
 
 
 ## Setup instructions:
-- You need to have MongoDB running on localhost:27017
-- Create collections and create these indexes
+- You need to have MongoDB 3.4 up and running on localhost:27017
+- Create jobs collection and create indexe
+
+    db.createCollection("jobs")
+    db.jobs.createIndex({location: "2dsphere"})
+
 - Import this into your IDE, start up JobmatcherApplication.java 
 - REST service to find best jobs for a worker:
 /jobMatchingApplication/jobMatches?workerId=0
