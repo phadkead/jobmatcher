@@ -32,4 +32,4 @@ Job matching preference is based on these critera:
 
 - Import this into your IDE, start up JobmatcherApplication.java 
 - REST service to find best jobs for a worker:
-/jobMatchingApplication/jobMatches?workerId=0
+/jobMatchingApplication/jobMatches?workerId={workerId}
