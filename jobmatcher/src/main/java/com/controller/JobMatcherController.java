@@ -27,7 +27,7 @@ public class JobMatcherController {
 	private static final Logger LOGGER = LoggerFactory.getLogger(JobMatcherController.class);
 
 	@RequestMapping("/jobMatches")
-	public List<Job> getJobs(@RequestParam(required = false) Integer workerId) {
+	public List<Job> getJobs(@RequestParam(required = true) Integer workerId) {
 		LOGGER.info("Executing job matcher to find best jobs for workerId: {}", workerId);
 		return jobMatcherService.findBestJobsForWorker(workerId);
 	}
