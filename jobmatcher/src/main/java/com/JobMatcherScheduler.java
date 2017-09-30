@@ -45,9 +45,9 @@ public class JobMatcherScheduler {
 
 	@Scheduled(fixedDelay = 10000000)
 	public void syncWorkers() {
-		clearData(Worker.class, "workers");
+		clearData(Worker.class, WORKERS);
 		ResponseEntity<Worker[]> list = restCallService.invoke("/workers", Worker[].class);
-		BulkWriteResult result = bulkInsertData(list);
+		BulkWriteResult result = bulkInsertData(Arrays.asList(list.getBody()), Worker.class, WORKERS);
 		LOGGER.info("Total: {} records inserted to workers", result.getInsertedCount());
 	}
 
@@ -55,19 +55,13 @@ public class JobMatcherScheduler {
 	public void syncJobs() {
 		clearData(Job.class, "jobs");
 		ResponseEntity<Job[]> list = restCallService.invoke("/jobs", Job[].class);
-		// System.out.println(list.getBody()[0]);
-		BulkOperations bulkops = mongoOps.bulkOps(BulkMode.UNORDERED, Job.class, JOBS);
-		List<Job> jobs = Arrays.asList(list.getBody());
-		bulkops.insert(jobs);
-		BulkWriteResult result = bulkops.execute();
+		BulkWriteResult result = bulkInsertData(Arrays.asList(list.getBody()), Job.class, JOBS);
 		LOGGER.info("Total: {} records inserted to jobs", result.getInsertedCount());
 	}
 
-	// TODO common and service
-	private BulkWriteResult bulkInsertData(ResponseEntity<Worker[]> list) {
-		BulkOperations bulkops = mongoOps.bulkOps(BulkMode.UNORDERED, Worker.class, WORKERS);
-		List<Worker> jobs = Arrays.asList(list.getBody());
-		bulkops.insert(jobs);
+	private <T> BulkWriteResult bulkInsertData(List<T> list, Class<?> clazz, String collection) {
+		BulkOperations bulkops = mongoOps.bulkOps(BulkMode.UNORDERED, clazz, collection);
+		bulkops.insert(list);
 		BulkWriteResult result = bulkops.execute();
 		return result;
 	}
