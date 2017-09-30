@@ -2,8 +2,7 @@
 
 
 ## Technology stack
-1. Spring Boot
-2. Spring Data
+1. Spring Boot, Spring Data, Spring scheduler
 3. Mongo DB (bulk insertion, geo geospatial data analysis)
 4. Mockito, Junit
 5. Spring REST webservices
