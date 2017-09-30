@@ -11,6 +11,7 @@
 ## How it works
 Spring scheduler runs on startup and then every 10 mins to fetch latest data from given third party APIs:
 http://test.swipejobs.com/api/workers
+
 http://test.swipejobs.com/api/jobs
 
 It removes and then bulk inserts fetched data to 2 MongoDB collections: workers, jobs
