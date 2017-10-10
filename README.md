@@ -1,5 +1,5 @@
 # Job Matcher
-
+Job matching algorithm that helps worker to find best jobs based on his geographic location
 
 ## Technology stack
 1. Spring Boot, Spring Data, Spring scheduler
@@ -8,7 +8,7 @@
 5. Spring REST webservices
 
 ## How it works
-Spring scheduler runs on startup and then every 10 mins to fetch latest data from given third party APIs:
+Spring scheduler runs on startup and then every 10 mins to fetch latest data from third party APIs:
 http://test.swipejobs.com/api/workers
 
 http://test.swipejobs.com/api/jobs
